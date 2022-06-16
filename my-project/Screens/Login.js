@@ -12,30 +12,16 @@ function Login(props) {
     const [password, setPassword] = useState('')
     const [data, setData] = useState([]);
 
+
     const IniciarSesion = () => {
-        return fetch(`http://127.0.0.1:8000/api/users`, {
-        'method': 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify()  
-        }).then(resp => resp.json())
-        .then(data => {
-            setData(data)
-            setLoading(false)
-          })
-        
-
-        .Logearse()
+        console.log(username, password);
     }
 
-    const Logearse = () => {
-        if(username === data.username){
-            props.navigation.navigate('Inicio', {data: data});
-        }
-        console.log("hola");
+    const IrABecas = () => {
+        props.navigation.navigate('Inicio');
     }
-    
+
+   
 
   return (
     <View style={styles.root}>
@@ -44,6 +30,12 @@ function Login(props) {
          style={[styles.logo, {height: height * 0.3}]}
          resizeMode="contain"
          />
+
+            <Button icon="" 
+                mode="contained" 
+                onPress={() => IrABecas()}>
+                Ir a Becas
+            </Button>
 
          <View style= {styles.ingresar}>
          <TextInput style = {styles.inputStyle}
