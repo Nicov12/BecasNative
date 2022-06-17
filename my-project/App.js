@@ -6,6 +6,7 @@ import CrearBeca from './Screens/CrearBeca';
 import BecaDetalle from './Screens/BecaDetalle';
 import EditarBeca from './Screens/EditarBeca';
 import Login from './Screens/Login';
+import Api from './Screens/ApiNYT';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -25,6 +26,9 @@ function App() {
     <View style={styles.container}>
      <Stack.Navigator style={styles.container}>
      <Stack.Screen name = "Login" component = {Login}
+      options = {myStyles}
+      />
+      <Stack.Screen name = "Api" component = {Api}
       options = {myStyles}
       />
       <Stack.Screen name = "Inicio" component = {Home}
