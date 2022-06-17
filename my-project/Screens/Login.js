@@ -11,6 +11,7 @@ function Login(props) {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [data, setData] = useState([]);
+    
 
 
     const IniciarSesion = () => {
@@ -36,6 +37,19 @@ function Login(props) {
                 onPress={() => IrABecas()}>
                 Ir a Becas
             </Button>
+
+            <Button icon="" 
+                mode="contained" 
+                onPress={() => props.navigation.navigate('Nacional')}>
+                Ir a Becas Nacionales
+            </Button>
+
+            <Button icon="" 
+                mode="contained" 
+                onPress={() => props.navigation.navigate('Internacional')}>
+                Ir a Becas Internacionales
+            </Button>
+
 
          <View style= {styles.ingresar}>
          <TextInput style = {styles.inputStyle}

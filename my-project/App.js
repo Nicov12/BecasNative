@@ -6,6 +6,9 @@ import CrearBeca from './Screens/CrearBeca';
 import BecaDetalle from './Screens/BecaDetalle';
 import EditarBeca from './Screens/EditarBeca';
 import Login from './Screens/Login';
+import Nacional from './Screens/BecaNacional';
+import Internacional from './Screens/BecaInternacional';
+
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -27,9 +30,16 @@ function App() {
      <Stack.Screen name = "Login" component = {Login}
       options = {myStyles}
       />
+     <Stack.Screen name = "Nacional" component = {Nacional}
+      options = {myStyles}
+      />
+      <Stack.Screen name = "Internacional" component = {Internacional}
+      options = {myStyles}
+      />
       <Stack.Screen name = "Inicio" component = {Home}
       options = {myStyles}
       />
+   
       <Stack.Screen name = "Crear Beca" component = {CrearBeca}
       options = {{...myStyles, title: "Crear Beca"}}/>   
      <Stack.Screen name = "Detalle" component = {BecaDetalle}
