@@ -11,7 +11,7 @@ function BecaNacional(props) {
   const[loading, setLoading] = useState(true);
 
   const loadData = () => {
-    fetch('http://192.168.20.21:80/api/becas/?pais__istartswith=NACIONAL', {
+    fetch('http://192.168.1.3:80/api/becas/?pais__istartswith=NACIONAL', {
       method: 'GET'
     })
 

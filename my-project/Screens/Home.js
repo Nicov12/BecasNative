@@ -15,13 +15,14 @@ function Home(props) {
   const[loading, setLoading] = useState(true);
 
   const loadData = () => {
-    fetch('http://192.168.20.21:80/api/becas', {
+    fetch('http://192.168.1.3:80/api/becas', {
       method: 'GET'
     })
 
     .then(resp => resp.json())
     .then(data => {
       setData(data)
+      console.log(data)
       setLoading(false)
     })
     .catch(error => Alert.alert("error", error))
