@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, FlatList, Alert} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Alert, Image} from 'react-native';
 import {Card, FAB} from 'react-native-paper';
+import Logo from '../assets/gorro.png';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -14,7 +15,7 @@ function Home(props) {
   const[loading, setLoading] = useState(true);
 
   const loadData = () => {
-    fetch('http://192.168.1.3:80/api/becas', {
+    fetch('http://192.168.20.21:80/api/becas', {
       method: 'GET'
     })
 
@@ -41,9 +42,14 @@ function Home(props) {
   const renderData = (item) => {
     return(
         <Card style={styles.cardStyle} onPress ={() => clickedItem(item)}>
-          <Text style= {{fontSize: 25, color: '#fff'}}>{item.nombre}</Text>
-          <Text style= {{fontSize: 15, color: '#fff'}}>Categoría: {item.pais}</Text>
-          <Text style= {{fontSize: 15, color: '#fff'}}>Porcentaje: {item.porcentaje}%</Text>
+          <Image
+            source={Logo} 
+            resizeMode="contain"
+            style={styles.imgStyle}
+         />
+          <Text style= {{fontSize: 25, color: '#fff', fontFamily: 'sans-serif-condensed',}}>{item.nombre}</Text>
+          <Text style= {{fontSize: 15, color: '#fff', fontFamily: 'sans-serif-condensed',}}>Categoría: {item.pais}</Text>
+          <Text style= {{fontSize: 15, color: '#fff', fontFamily: 'sans-serif-condensed',}}>Porcentaje: {item.porcentaje}%</Text>
         </Card>
     )
   }
@@ -51,6 +57,7 @@ function Home(props) {
   return (
       
       <View style={styles.container2}>
+        
         <FlatList
         data = {data}
         renderItem = {({item}) => {
@@ -65,8 +72,8 @@ function Home(props) {
           style = {styles.fab}
           small = {false} 
           icon = "plus"
-          theme = {{colors:{accent: "blue"}}}
-
+          label = "Agregar Beca"
+          theme = {{colors:{accent: "green"}}}
           onPress = {() => props.navigation.navigate('Crear Beca')}
         
         />
@@ -80,9 +87,13 @@ function Home(props) {
 const styles = StyleSheet.create({
   cardStyle: {
     padding: 10,
-    margin: 10,
-    backgroundColor: "#1C4364",
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: '#FFA500',
     color: '#fff',
+    fontFamily: 'sans-serif-condensed',
 
   },
 
@@ -91,10 +102,13 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
-    backgroundColor: 'blue',
+    backgroundColor: '#42a245',
   },
   container2: {
-    backgroundColor: "#84BFF0"
+    backgroundColor: "#1B2430"
+  },
+  imgStyle:{
+    width: 200,
   }
 });
 

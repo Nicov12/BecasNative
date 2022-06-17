@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, FlatList, Alert, Image} from 'react-native';
+import { StyleSheet, Text, View, Linking} from 'react-native';
 import {Card, FAB} from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Avatar, Button, Title, Paragraph } from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
 
-function ApiNYT() {
+function ApiNYT(props) {
 
     // NY TIMES
     const [articles, setArticles] = useState([])
@@ -23,7 +24,7 @@ function ApiNYT() {
             'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=xMGIqDTK5G9c8yfhjVrwGOVeC9VjocZ3'
           )
           const articles = await res.json()
-          console.log(articles.results.books.slice(0,3));
+          //console.log(articles.results.books.slice(0,3));
           setArticles(articles.results.books.slice(0,3));
           } 
            catch (error) {
@@ -35,10 +36,9 @@ function ApiNYT() {
   },[] )
 
   return (
-
+    <ScrollView style={styles.root}>
     <View>
-        <Text>HOLA COMOTAS</Text>
-
+        <Text style={styles.texto}>LIBROS</Text>
         <View>
       {articles.map((article) => {
         const {
@@ -52,31 +52,67 @@ function ApiNYT() {
         return(
             <View key={primary_isbn10}>
 
-                <Card>
-                    <Card.Title title="Card Title" subtitle="Card Subtitle"/>
+                <Card style={styles.cardStyle}>
                     <Card.Content>
-                    <Title>Card title</Title>
-                    <Paragraph>Card content</Paragraph>
+                    <Title style={styles.textStyle}>{title}</Title>
+                    <Paragraph style={styles.textStyle}>{description}</Paragraph>
                     </Card.Content>
-                    <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-                    <Card.Actions>
-                    <Button>Cancel</Button>
-                    <Button>Ok</Button>
+                    <Card.Cover style={styles.imgStyle} source={{ uri: book_image }} />
+                    <Card.Actions style={styles.btnStyle} >
+                    <Button
+                      icon = "plus"
+                      mode = "contained"
+                      color = "#024a86"
+                      style={styles.btnStyle}
+                      onPress={() => Linking.openURL(amazon_product_url)}
+                    > Ir a la página </Button>
                     </Card.Actions>
                 </Card>
-
-
-                <Text>{title}</Text>
-                <Text>{amazon_product_url}</Text>
-                <Text>{description}</Text>
             </View>
         )
       })}
       </View>
     </View>
+    </ScrollView>
 
 
   );
 }
+
+const styles = StyleSheet.create({ 
+    texto: {
+        padding: 10,
+        fontSize: 30,
+        textAlign: 'center',
+        backgroundColor: 'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 48%, rgba(44,53,212,1) 100%)',
+        color: '#fff',
+        marginTop: 10,
+        marginBottom: 10,
+        fontFamily: 'sans-serif-condensed',
+    },
+    cardStyle: {
+      margin: 20,
+      backgroundColor: 'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 48%, rgba(44,53,212,1) 100%)',
+    },
+    textStyle: {
+      color: '#fff',
+      textAlign: 'center',
+      fontFamily: 'sans-serif-condensed',
+    },
+    imgStyle: {
+      width: '100%',
+      height: 500,
+    },
+    btnStyle: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      textAlign: 'center',
+      margin: 10,
+    },
+    root: {
+      backgroundColor: "#84BFF0",
+    }
+
+});
 
 export default ApiNYT;
