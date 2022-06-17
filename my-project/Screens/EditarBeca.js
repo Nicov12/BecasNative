@@ -12,7 +12,7 @@ function EditarBeca(props) {
     const [requerimiento, setRequerimiento] = useState(data.requerimiento);
     
     const EditarBeca = () => {
-        fetch(`http://192.168.20.21:80/api/becas/${data.id}/`, {
+        fetch(`http://192.168.1.3:80/api/becas/${data.id}/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

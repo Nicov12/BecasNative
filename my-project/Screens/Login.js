@@ -37,6 +37,11 @@ function Login(props) {
                 onPress={() => IrABecas()}>
                 Ir a Becas
             </Button>
+            <Button icon="" 
+                mode="contained" 
+                onPress={() => props.navigation.navigate('Api')}>
+                Ir a api
+            </Button>
 
             <Button icon="" 
                 mode="contained" 
