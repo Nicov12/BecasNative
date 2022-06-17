@@ -6,13 +6,9 @@ import CrearBeca from './Screens/CrearBeca';
 import BecaDetalle from './Screens/BecaDetalle';
 import EditarBeca from './Screens/EditarBeca';
 import Login from './Screens/Login';
-<<<<<<< HEAD
 import Nacional from './Screens/BecaNacional';
 import Internacional from './Screens/BecaInternacional';
-
-=======
 import Api from './Screens/ApiNYT';
->>>>>>> 8bb3f8e7528a7dd5dc0efa280dde33e45662fe23
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -38,6 +34,8 @@ function App() {
       options = {myStyles}
       />
       <Stack.Screen name = "Internacional" component = {Internacional}
+      options = {myStyles}
+      />
       <Stack.Screen name = "Api" component = {Api}
       options = {myStyles}
       />
