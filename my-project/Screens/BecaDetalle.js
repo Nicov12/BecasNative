@@ -8,15 +8,14 @@ function BecaDetalle(props) {
     const data = props.route.params.data;
     
     const BorrarBeca = (data) => {
-        fetch(`http://192.168.1.3:80/api/becas/${data.id}/`, {
+        fetch(`http://192.168.20.21:80/api/becas/${data.id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             }
         })
         .then(data => {
-            props.navigation.navigate('Inicio');
-            
+            props.navigation.navigate('Inicio');   
         })
         .catch(error => Alert.alert("Error: ", error));
     }

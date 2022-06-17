@@ -58,7 +58,7 @@ function Home(props) {
   return (
       
       <View style={styles.container2}>
-        
+
         <FlatList
         data = {data}
         renderItem = {({item}) => {
