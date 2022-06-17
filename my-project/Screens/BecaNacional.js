@@ -1,6 +1,9 @@
 import React , {useState, useEffect}from 'react'
-import { StyleSheet, Text, View, FlatList, Alert} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Alert, Image} from 'react-native';
 import {Card, FAB} from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Logo from '../assets/gorro.png';
 
 function BecaNacional(props) {
 
@@ -37,16 +40,22 @@ function BecaNacional(props) {
   //Renderizar la información en pantalla
   const renderData = (item) => {
     return(
-        <Card style={styles.cardStyle} onPress ={() => clickedItem(item)}>
-          <Text style= {{fontSize: 25, color: '#fff'}}>{item.nombre}</Text>
-          <Text style= {{fontSize: 15, color: '#fff'}}>Categoría: {item.pais}</Text>
-          <Text style= {{fontSize: 15, color: '#fff'}}>Porcentaje: {item.porcentaje}%</Text>
-        </Card>
+      <Card style={styles.cardStyle} onPress ={() => clickedItem(item)}>
+      <Image
+        source={Logo} 
+        resizeMode="contain"
+        style={styles.imgStyle}
+     />
+      <Text style= {{fontSize: 25, color: '#fff', fontFamily: 'sans-serif-condensed',}}>{item.nombre}</Text>
+      <Text style= {{fontSize: 15, color: '#fff', fontFamily: 'sans-serif-condensed',}}>Categoría: {item.pais}</Text>
+      <Text style= {{fontSize: 15, color: '#fff', fontFamily: 'sans-serif-condensed',}}>Porcentaje: {item.porcentaje}%</Text>
+    </Card>
     )
   }
 
   return (
-    <View style={styles.container2}>
+    <SafeAreaView style={styles.container2}>
+    <View >
     <FlatList
     data = {data}
     renderItem = {({item}) => {
@@ -56,42 +65,30 @@ function BecaNacional(props) {
     refreshing = {loading}
     keyExtractor = {item => `${item.id}`}
     />
-    
-    <FAB
-      style = {styles.fab}
-      small = {false} 
-      icon = "plus"
-      theme = {{colors:{accent: "blue"}}}
-
-      onPress = {() => props.navigation.navigate('Crear Beca')}
-    
-    />
-
-    
-
   </View> 
+  </SafeAreaView>
+  
 )
 }
 
 const styles = StyleSheet.create({
-cardStyle: {
-padding: 10,
-margin: 10,
-backgroundColor: "#1C4364",
-color: '#fff',
+  cardStyle: {
+    padding: 10,
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: '#FFA500',
+    color: '#fff',
+    fontFamily: 'sans-serif-condensed',
 
-},
+  },
 
-fab: {
-position: 'absolute',
-margin: 16,
-right: 0,
-bottom: 0,
-backgroundColor: 'blue',
-},
-container2: {
-backgroundColor: "#84BFF0"
-}
+  container2: {
+    backgroundColor: "#1B2430"
+  },
+  imgStyle:{
+    width: 200,
+  }
 });
-
 export default BecaNacional

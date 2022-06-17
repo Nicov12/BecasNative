@@ -84,18 +84,18 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 30,
         textAlign: 'center',
-        backgroundColor: 'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 48%, rgba(44,53,212,1) 100%)',
-        color: '#fff',
+        backgroundColor: '#FFA500',
+        color: 'black',
         marginTop: 10,
         marginBottom: 10,
         fontFamily: 'sans-serif-condensed',
     },
     cardStyle: {
       margin: 20,
-      backgroundColor: 'radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 48%, rgba(44,53,212,1) 100%)',
+      backgroundColor: '#FFA500',
     },
     textStyle: {
-      color: '#fff',
+      color: 'black',
       textAlign: 'center',
       fontFamily: 'sans-serif-condensed',
     },
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
       margin: 10,
     },
     root: {
-      backgroundColor: "#84BFF0",
+      backgroundColor: "#1B2430",
     }
 
 });

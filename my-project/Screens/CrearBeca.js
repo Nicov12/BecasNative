@@ -17,7 +17,7 @@ function CrearBeca(props) {
 
     const CrearBecas = () => {
 
-        fetch("http://192.168.1.3:80/api/becas/", {
+        fetch("http://192.168.20.21:80/api/becas/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

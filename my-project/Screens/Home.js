@@ -22,6 +22,7 @@ function Home(props) {
     .then(resp => resp.json())
     .then(data => {
       setData(data)
+      console.log(data)
       setLoading(false)
     })
     .catch(error => Alert.alert("error", error))
@@ -57,7 +58,7 @@ function Home(props) {
   return (
       
       <View style={styles.container2}>
-        
+
         <FlatList
         data = {data}
         renderItem = {({item}) => {

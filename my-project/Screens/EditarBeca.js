@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { Alert, StyleSheet, Text, View} from 'react-native';
 import {TextInput, Button} from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
 
 function EditarBeca(props) {
 
@@ -12,7 +13,7 @@ function EditarBeca(props) {
     const [requerimiento, setRequerimiento] = useState(data.requerimiento);
     
     const EditarBeca = () => {
-        fetch(`http://192.168.1.3:80/api/becas/${data.id}/`, {
+        fetch(`http://192.168.20.21:80/api/becas/${data.id}/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,40 +28,41 @@ function EditarBeca(props) {
     }
 
   return (
+    <ScrollView style={styles.root}>
     <View>
         <TextInput style = {styles.inputStyle}
         label = "Nombre"
         value = {nombre}
         mode = "outlined"
-        
+        activeOutlineColor='#161836'
         onChangeText={text => setNombre(text)}/>
 
         <TextInput style = {styles.inputStyle}
         label = "Porcentaje"
         value = {porcentaje}
         mode = "outlined"
-        
+        activeOutlineColor='#161836'
         onChangeText={text => setPorcentaje(text)}/>
 
         <TextInput style = {styles.inputStyle}
         label = "Categoría"
         value = {pais}
         mode = "outlined"
-        
+        activeOutlineColor='#161836'
         onChangeText={text => setPais(text)}/>
 
         <TextInput style = {styles.inputStyle}
         label = "Universidad"
         value = {universidad}
         mode = "outlined"
-        
+        activeOutlineColor='#161836'
         onChangeText={text => setUniversidad(text)}/>
 
         <TextInput style = {styles.inputStyle}
         label = "Requerimiento"
         value = {requerimiento}
         mode = "outlined"
-        
+        activeOutlineColor='#161836'
         onChangeText={text => setRequerimiento(text)}/>
 
         <Button  
@@ -74,6 +76,7 @@ function EditarBeca(props) {
         </Button>
         
     </View>
+    </ScrollView>
   )
 }
 
@@ -89,8 +92,11 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 50,
         marginRight: 50,
-        backgroundColor: 'green',
-    }
+    backgroundColor: '#42a245',
+},
+root: {
+    backgroundColor: '#FFA500',
+}
 })
 
 export default EditarBeca
