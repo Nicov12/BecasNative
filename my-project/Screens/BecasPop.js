@@ -1,29 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React , {useState, useEffect}from 'react'
 import { StyleSheet, Text, View, FlatList, Alert, Image} from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph, FAB } from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
 import Logo from '../assets/gorro.png';
+import Api from './ApiNYT';
+import {Button, Card, Title} from 'react-native-paper';
 
 
-function Home(props) {
+function BecasPop(props) {
 
-  //UseState para guardar la información
+    //UseState para guardar la información
   const [data, setData] = useState([]);
 
   //Refrescar la pagina
   const[loading, setLoading] = useState(true);
 
   const loadData = () => {
-    fetch('http://192.168.20.21:80/api/becas', {
+    fetch('http://192.168.20.21:80/api/becas/?porcentaje__gte=50&porcentaje__lte=100', {
       method: 'GET'
     })
 
     .then(resp => resp.json())
     .then(data => {
       setData(data)
-      //console.log(data)
       setLoading(false)
     })
-    .catch(error => Alert.alert("error", error))
+    .catch(error => console.log(error))
   }
 
 
@@ -40,8 +41,7 @@ function Home(props) {
   //Renderizar la información en pantalla
   const renderData = (item) => {
     return(
-        
-        <Card style={styles.cardStyle} onPress ={() => clickedItem(item)}>
+      <Card style={styles.cardStyle} onPress ={() => clickedItem(item)}>
         <Card.Content>
           <Title style={styles.titleStyle}>{item.nombre}</Title>
           <Text style= {styles.text1}>
@@ -57,32 +57,37 @@ function Home(props) {
   }
 
   return (
-      <View style={styles.root}>
+    
+    <ScrollView style={styles.container2}>
+        <Text style={styles.texto}> BECAS POPULARES</Text>
         <FlatList
         data = {data}
         renderItem = {({item}) => {
-          return renderData(item);
+        return renderData(item);
         }}
         onRefresh = {() => loadData()}
         refreshing = {loading}
         keyExtractor = {item => `${item.id}`}
-        /> 
-
-      <FAB
-          style = {styles.fab}
-          small = {false} 
-          icon = "plus"
-          label = "Agregar Beca"
-          theme = {{colors:{accent: "green"}}}
-          onPress = {() => props.navigation.navigate('Crear Beca')}
-        
         />
+        <Api/>
+    </ScrollView> 
+    
+    
 
-      </View> 
-  )
+)
 }
 
 const styles = StyleSheet.create({
+  texto: {
+    padding: 10,
+    fontSize: 30,
+    textAlign: 'center',
+    backgroundColor: '#FFA500',
+    color: 'black',
+    marginTop: 10,
+    marginBottom: 10,
+    fontFamily: 'sans-serif-condensed',
+},
   cardStyle: {
     padding: 10,
     marginRight: 40,
@@ -92,16 +97,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFA500',
     color: '#fff',
     fontFamily: 'sans-serif-condensed',
-    alignContent: 'center',
-    alignItems: 'center',
 
   },
 
-  root: {
-    backgroundColor: '#1B2430'
-  },
   container2: {
-    backgroundColor: "#1B2430"
+    backgroundColor: "#1B2430",
   },
   imgStyle:{
     backgroundColor: 'transparent', 
@@ -131,15 +131,6 @@ const styles = StyleSheet.create({
       marginLeft: 5,
       marginRight: 5,
   },
-
-  fab: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#42a245',
-  }
 });
 
-
-export default Home
+export default BecasPop;

@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Avatar, Button, Title, Paragraph } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
+
 function ApiNYT(props) {
 
     // NY TIMES
@@ -24,7 +25,7 @@ function ApiNYT(props) {
             'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=xMGIqDTK5G9c8yfhjVrwGOVeC9VjocZ3'
           )
           const articles = await res.json()
-          //console.log(articles.results.books.slice(0,3));
+         // console.log(articles.results.books.slice(0,3));
           setArticles(articles.results.books.slice(0,3));
           } 
            catch (error) {
@@ -35,11 +36,9 @@ function ApiNYT(props) {
       //Fin nytimes
   },[] )
 
-  return (
-    <ScrollView style={styles.root}>
-    <View>
-        <Text style={styles.texto}>LIBROS</Text>
-        <View>
+  return (  
+      <View style={styles.root}>
+          <Text style={styles.texto}> SECCIÓN DE LIBROS</Text>
       {articles.map((article) => {
         const {
           description,
@@ -54,8 +53,8 @@ function ApiNYT(props) {
 
                 <Card style={styles.cardStyle}>
                     <Card.Content>
-                    <Title style={styles.textStyle}>{title}</Title>
-                    <Paragraph style={styles.textStyle}>{description}</Paragraph>
+                    <Title style={styles.titleStyle}>{title}</Title>
+                    <Paragraph style={styles.text1}>{description}</Paragraph>
                     </Card.Content>
                     <Card.Cover style={styles.imgStyle} source={{ uri: book_image }} />
                     <Card.Actions style={styles.btnStyle} >
@@ -72,10 +71,6 @@ function ApiNYT(props) {
         )
       })}
       </View>
-    </View>
-    </ScrollView>
-
-
   );
 }
 
@@ -91,8 +86,15 @@ const styles = StyleSheet.create({
         fontFamily: 'sans-serif-condensed',
     },
     cardStyle: {
-      margin: 20,
+      padding: 10,
+      marginRight: 40,
+      marginLeft: 40,
+      marginTop: 10,
+      marginBottom: 10,
       backgroundColor: '#FFA500',
+      color: '#fff',
+      fontFamily: 'sans-serif-condensed',
+  
     },
     textStyle: {
       color: 'black',
@@ -111,7 +113,25 @@ const styles = StyleSheet.create({
     },
     root: {
       backgroundColor: "#1B2430",
-    }
+    },
+    titleStyle: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        backgroundColor: "#1B2430", 
+        color: '#fff',
+        padding: 10,
+    },
+    text1:{
+        fontSize: 20, 
+        color: 'black', 
+        fontWeight: 'bold',
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: "#1B2430", 
+        color: '#fff',
+        marginBottom:20,
+    },
 
 });
 

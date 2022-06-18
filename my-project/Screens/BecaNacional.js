@@ -1,9 +1,10 @@
 import React , {useState, useEffect}from 'react'
 import { StyleSheet, Text, View, FlatList, Alert, Image} from 'react-native';
-import {Card, FAB} from 'react-native-paper';
+import { Card, Title} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Logo from '../assets/gorro.png';
+
 
 function BecaNacional(props) {
 
@@ -41,15 +42,17 @@ function BecaNacional(props) {
   const renderData = (item) => {
     return(
       <Card style={styles.cardStyle} onPress ={() => clickedItem(item)}>
-      <Image
-        source={Logo} 
-        resizeMode="contain"
-        style={styles.imgStyle}
-     />
-      <Text style= {{fontSize: 25, color: '#fff', fontFamily: 'sans-serif-condensed',}}>{item.nombre}</Text>
-      <Text style= {{fontSize: 15, color: '#fff', fontFamily: 'sans-serif-condensed',}}>Categoría: {item.pais}</Text>
-      <Text style= {{fontSize: 15, color: '#fff', fontFamily: 'sans-serif-condensed',}}>Porcentaje: {item.porcentaje}%</Text>
-    </Card>
+        <Card.Content>
+          <Title style={styles.titleStyle}>{item.nombre}</Title>
+          <Text style= {styles.text1}>
+                CATEGORÍA: <Text style= {{fontSize: 16, color: '#fff'}}> {item.pais}  </Text>  
+          </Text> 
+          <Text style= {styles.text1}>
+                PORCENTAJE: <Text style= {{fontSize: 16, color: '#fff'}}> {item.porcentaje}% </Text> 
+          </Text>
+        </Card.Content>
+        <Card.Cover style= {styles.imgStyle} source={Logo} />
+        </Card>
     )
   }
 
@@ -88,7 +91,32 @@ const styles = StyleSheet.create({
     backgroundColor: "#1B2430"
   },
   imgStyle:{
-    width: 200,
-  }
+    backgroundColor: 'transparent', 
+  },
+  textStyle:{
+    fontSize: 25, 
+    color: '#fff', 
+    fontFamily: 'sans-serif-condensed',
+    textAlign: 'center',
+  },
+  titleStyle: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      backgroundColor: "#1B2430", 
+      color: '#fff',
+      padding: 10,
+  },
+  text1:{
+      fontSize: 20, 
+      color: 'black', 
+      fontWeight: 'bold',
+      marginTop: 20,
+      padding: 10,
+      backgroundColor: "#1B2430", 
+      color: '#fff',
+      marginLeft: 5,
+      marginRight: 5,
+  },
 });
 export default BecaNacional

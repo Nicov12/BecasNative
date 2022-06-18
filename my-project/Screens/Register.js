@@ -1,63 +1,28 @@
-import React, {useState, useEffect} from 'react'
-import { StyleSheet, View, Image, useWindowDimensions, TouchableOpacity, Text, Alert} from 'react-native';
+import React, {useState} from 'react'
+import { StyleSheet, View, Image, useWindowDimensions, TouchableOpacity, Text, ScrollView} from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import Logo from '../assets/logo.png';
 
 
-function Login(props) {
+function Register(props) {
 
     const {height} = useWindowDimensions();
 
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
-    var aux1 = "";
-    var aux2 = "";
     const [data, setData] = useState([]);
- 
+    
 
-     const loadUser = () => {
-            
-         data.map((data) => {
-            
-             if(data.username === username && data.password === password){  
-                console.log(data.username, username, data.password, password);
-                 aux1 = data.username;
-                 aux2 = data.password;
-                 console.log(aux1, aux2);
-             }       
-         }); 
 
-         if(aux1 === username && aux2 === password){
-            console.log("hola")
-            props.navigation.navigate('Populares');
-            }else{
-                console.log("no")
-                Alert.alert("Usuario o contraseña incorrectos");
-            }
-       }
+    const Registrar = () => {
+        console.log(username, password);
+    }
 
     const IrABecas = () => {
         props.navigation.navigate('Inicio');
     }
 
-    useEffect(() => {  
-
-        fetch('http://192.168.20.21:80/api/users', {
-          method: 'GET'
-        })
-    
-        .then(resp => resp.json())
-        .then(data => {
-          setData(data)
-          //console.log(data)
-        })
-        .catch(error => Alert.alert("error", error))
-    },[]);
-
-
-        
-
-
+   
 
   return (
     <View style={styles.root}>
@@ -66,9 +31,9 @@ function Login(props) {
          style={[styles.logo, {height: height * 0.3}]}
          resizeMode="contain"
          />
-
          <View  >
-            <Text style = {{textAlign: "center", fontSize: 30, fontWeight: "bold", fontFamily: "sans-serif-condensed"}}> INICIAR SESIÓN </Text>
+            <Text style = {{textAlign: "center", fontSize: 30, fontWeight: "bold", fontFamily: "sans-serif-condensed"}}>
+             REGISTRARSE </Text>
          <View>
          <TextInput style = {styles.inputStyle}
             label = "Usuario"  
@@ -85,17 +50,17 @@ function Login(props) {
             secureTextEntry
             onChangeText={text => setPassword(text)}/>
 
-            <Button icon="login" 
+            <Button icon="plus" 
                     style={styles.btnStyle}
                     color="#fff"
-                    onPress={() => loadUser()}>
-                    Ingresar
+                    onPress={() => Registrar()}>
+                    Crear Cuenta
             </Button>
             <View style={styles.regisStyle}>
-                <Text> ¿No tienes una cuenta? </Text>
+                <Text> ¿Ya tienes una cuenta? </Text>
                 <TouchableOpacity>
                     <Text style= {{fontSize: 15, color: 'blue'}}
-                    onPress={() => props.navigation.navigate('Register')}> Registrate </Text>
+                    onPress={() => props.navigation.navigate('Login')}> Inicia sesión </Text>
                 </TouchableOpacity>
             </View>
          </View>
@@ -138,4 +103,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default Login
+export default Register

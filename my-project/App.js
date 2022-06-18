@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, View} from 'react-native';
+import 'react-native-gesture-handler';
 import Home from './Screens/Home';
 import Contants from 'expo-constants';
 import CrearBeca from './Screens/CrearBeca';
@@ -9,75 +9,62 @@ import Login from './Screens/Login';
 import Nacional from './Screens/BecaNacional';
 import Internacional from './Screens/BecaInternacional';
 import Api from './Screens/ApiNYT';
-
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-
-
-const myStyles = {
-  title: "Becas",
-  headerTintColor: "white",
-  headerStyle: {
-    backgroundColor: "#082032",
-  }
-}
-
-function App() {
-
-  const Stack = createStackNavigator();
-
-  return (
-    <View style={styles.container}>
-     <Stack.Navigator style={styles.container}>
-      <Stack.Screen name = "Login" component = {Login}
-        options = {myStyles}/>
-    
-      <Stack.Screen name = "Nacional" component = {Nacional}
-        options = {myStyles}/>
-        <Stack.Screen name = "Internacional" component = {Internacional}
-        options = {myStyles}
-        />
-        <Stack.Screen name = "Api" component = {Api}
-        options = {myStyles}
-        />
-        <Stack.Screen name = "Inicio" component = {Home}
-        options = {myStyles}
-        />
-    
-        <Stack.Screen name = "Crear Beca" component = {CrearBeca}
-        options = {{...myStyles, title: "Crear Beca"}}/>   
-      <Stack.Screen name = "Detalle" component = {BecaDetalle}
-        options = {{...myStyles, title: "Detalle de la beca"}}/>
-        <Stack.Screen name = "Editar" component = {EditarBeca}
-        options = {{...myStyles, title: "Editar beca"}}/>  
-     </Stack.Navigator>
-    
-    </View>
-  );
-}
+import Register from './Screens/Register';
+import BecasPop from './Screens/BecasPop';
 
 
-export default() => {
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Drawer = createDrawerNavigator();
+
+
+export default function App() {
+
   return (
     <NavigationContainer>
-      <App/>
+      <Drawer.Navigator 
+      initialRouteName="Login"
+      drawerPosition="right"
+      screenOptions={{
+        drawerStyle: {
+          backgroundColor: '#68b7e7',
+          width: 240,
+          borderColor: '#161836',
+        },
+       
+      }}>
+        <Drawer.Screen name="Login" component={Login} 
+        options = {{headerShown: false, drawerItemStyle: { display: 'none' }}}/> 
+        <Drawer.Screen name="Register" component={Register} 
+        options = {{headerShown: false, drawerItemStyle: { display: 'none' }}}/>
+        <Drawer.Screen name="Crear Beca" component={CrearBeca} 
+        options = {{ drawerItemStyle: { display: 'none' }}}/> 
+        <Drawer.Screen name="Detalle" component={BecaDetalle} 
+        options = {{drawerItemStyle: { display: 'none' }, 
+        title: 'Detalle de la beca'}}/> 
+        <Drawer.Screen name="Editar" component={EditarBeca} 
+        options = {{drawerItemStyle: { display: 'none' }, title: 'Editar beca'}}/>
+        <Drawer.Screen name="Populares" component={BecasPop} 
+        options = {{drawerActiveBackgroundColor: '#7f98a7',
+        drawerActiveTintColor: 'white',
+        drawerInactiveTintColor: 'white' }}/>
+        <Drawer.Screen name="Becas" component={Home} 
+        options = {{drawerActiveBackgroundColor: '#7f98a7',
+        drawerActiveTintColor: 'white',
+        drawerInactiveTintColor: 'white'  }}/>
+        <Drawer.Screen name="Nacionales" component={Nacional} 
+        options = {{drawerActiveBackgroundColor: '#7f98a7',
+        drawerActiveTintColor: 'white',
+        drawerInactiveTintColor: 'white'  }}/>
+        <Drawer.Screen name="Internacional" component={Internacional}
+        options = {{drawerActiveBackgroundColor: '#7f98a7',
+        drawerActiveTintColor: 'white',
+        drawerInactiveTintColor: 'white'  }} />
+        <Drawer.Screen name="Cerrar Sesión" component={Login} 
+        options = {{headerShown: false}}/>
+       
+      </Drawer.Navigator>
     </NavigationContainer>
-    )
+  );
 }
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#96d3c4',
-    marginTop: Contants.statusBarHeight,
-  
-  },
-  textStyle :{
-    fontSize: 25,
-    color: 'black',
-    fontWeight: 'bold',
-    fontFamily: 'sans-serif-condensed',
-  }
-});

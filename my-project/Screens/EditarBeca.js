@@ -3,6 +3,7 @@ import { Alert, StyleSheet, Text, View} from 'react-native';
 import {TextInput, Button} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
+
 function EditarBeca(props) {
 
     const data = props.route.params.data;
@@ -22,7 +23,7 @@ function EditarBeca(props) {
         })
         .then(response => response.json())
         .then(data => {
-            props.navigation.navigate('Inicio', {data: data});
+            props.navigation.navigate('Becas', {data: data});
         })
         .catch(error => Alert.alert("Error: ", error));
     }
@@ -74,13 +75,29 @@ function EditarBeca(props) {
         >
             Editar Beca
         </Button>
+
+        <Button  
+        style = {styles.botonStyle}
+        icon = "update"
+        mode = "contained"
+        color = 'red'
+        onPress = {() => props.navigation.navigate('Detalle', {data: data})}
         
+        >
+            Volver
+        </Button>
     </View>
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
+
+    menu: {
+        position: 'relative',
+        backgroundColor: '#161836',
+        marginTop: 143,
+    },
     inputStyle: {
         padding:10,
         marginLeft:50,

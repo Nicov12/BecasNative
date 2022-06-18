@@ -26,7 +26,7 @@ function CrearBeca(props) {
         })
         .then(response => response.json())
         .then(data => {
-            props.navigation.navigate('Inicio', {data: data});
+            props.navigation.navigate('Becas', {data: data});
         })
         .catch(error => Alert.alert("Error: ", error));
         
@@ -80,7 +80,16 @@ function CrearBeca(props) {
         >
             Agregar Beca
         </Button>
+
+        <Button  
+        style = {styles.botonStyle}
+        icon = "pencil"
+        mode = "contained"
+        onPress = {() => props.navigation.navigate('Becas')}
         
+        >
+            Volver
+        </Button>
     </View>
     </ScrollView>
   )
