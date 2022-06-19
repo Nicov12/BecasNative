@@ -27,9 +27,11 @@ function Root() {
       <Drawer.Screen name="Login" component={Login} 
       options = {{headerShown: false, drawerItemStyle: { display: 'none' }}}/>
       <Drawer.Screen name="Inicio" component={BecasPop} />
-      <Drawer.Screen name="Becas" component={Home} />
+      <Drawer.Screen name="Becas" component={Home} />  
       <Stack.Screen name="Nacional" component={Nacional} />
       <Stack.Screen name="Internacional" component={Internacional} />
+      <Drawer.Screen name="Cerrar Sesión" component={Login} 
+      options = {{headerShown: false}}/>
       <Stack.Screen name="Register" component={Register} 
       options = {{headerShown: false, drawerItemStyle: { display: 'none' }}}/>
     </Drawer.Navigator>

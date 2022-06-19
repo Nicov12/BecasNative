@@ -25,7 +25,7 @@ function Register(props) {
         })
         .then(response => response.json())
         .then(data => {
-            props.navigation.navigate('Login', {data: data});
+            props.navigation.navigate('Inicio', {data: data});
         })
         .catch(error => Alert.alert("Error: ", error));
     }
