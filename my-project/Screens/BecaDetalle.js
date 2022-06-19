@@ -24,14 +24,13 @@ function BecaDetalle(props) {
   
     return (
     <ScrollView style = {styles.viewStyle}>
+        <Text style={styles.texto}> DETALLES DE LA BECA</Text>
     <View >
         <Card style = {styles.cardStyle}>
-            <Card.Content style={{backgroundColor: '#FFA500'}}>
                 <Title style={styles.titleStyle}>{data.nombre}</Title>
-            </Card.Content>
             <Card.Cover source={Logo} resizeMode="contain"
             style={styles.imgStyle} />
-            <View style={{backgroundColor: '#FFA500'}}>  
+            
                 <Text style= {styles.text1}>
                 CATEGORÍA: <Text style= {{fontSize: 16, color: '#fff'}}> {data.pais}  </Text>  
                 </Text> 
@@ -44,9 +43,10 @@ function BecaDetalle(props) {
                 <Text style= {styles.text1}>
                 REQUERIMIENTOS: <Text style= {{fontSize: 16, color: '#fff'}}> {data.requerimiento} </Text> 
                 </Text>
-            </View>
-            <Card.Actions style = {styles.botonStyle}>
+                </Card>
+                <View style = {styles.actionStyle}>
                 <Button
+                style = {styles.botonStyle}
                     icon = "update"
                     mode = "contained"
                     color = "#42a245"
@@ -55,6 +55,7 @@ function BecaDetalle(props) {
                     Editar
                 </Button>
                 <Button
+                style = {styles.boton2Style}
                     icon = "delete"
                     mode = "contained"
                     color = "#c70039"
@@ -62,8 +63,7 @@ function BecaDetalle(props) {
                 >
                     Borrar
                 </Button>
-            </Card.Actions>
-        </Card>
+            </View>  
     </View>
     </ScrollView>
     
@@ -72,52 +72,101 @@ function BecaDetalle(props) {
 }
 
 const styles = StyleSheet.create({
+    texto: {
+        padding: 10,
+        fontSize: 30,
+        textAlign: 'center',
+        backgroundColor: '#9dd3ff',
+        color: 'black',
+        marginTop: 10,
+        marginBottom: 10,
+        fontFamily: 'sans-serif-condensed',
+        borderRadius: 50,
+        marginRight: 40,
+        marginLeft: 40,
+    },
     viewStyle: {
         backgroundColor: "#1B2430",
+        marginBottom: 0,
     },
     botonStyle: {
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "space-around",
-        backgroundColor: "#1B2430", 
-        marginTop: 40,
-        marginBottom: 30,
+        marginTop: 0,
+        marginBottom: 0,
+        marginLeft: 30,
+        marginRight: 30,
+        borderRadius: 50,
         
     },
     container2: {
         backgroundColor: "#1B2430"
     },
     imgStyle: {
-        backgroundColor: "transparent",
-        margin: 10
+        backgroundColor: "transparent"
     },
     text1:{
-        fontSize: 20, 
+        fontSize: 15, 
         color: 'black', 
         fontWeight: 'bold',
-        marginTop: 20,
+        marginTop: 10,
         padding: 10,
         backgroundColor: "#1B2430", 
         color: '#fff',
         marginLeft: 5,
         marginRight: 5,
+        borderRadius: 20,
     },
     menu: {
         backgroundColor: '#161836',
         margin: 75,
     },
     cardStyle:{
-        backgroundColor: '#FFA500',
-        margin: 20,
+        padding: 10,
+        marginRight: 40,
+        marginLeft: 40,
+        marginTop: 10,
+        marginBottom: 10,
+        backgroundColor: '#9dd3ff',
+        color: '#fff',
+        fontFamily: 'sans-serif-condensed',
+        alignContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
     },
     titleStyle: {
         fontSize: 25,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        backgroundColor: "#1B2430", 
-        color: '#fff',
-        marginLeft: 5,
-        marginRight: 5,
-        padding: 10,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      backgroundColor: "#1B2430", 
+      color: '#fff',
+      padding: 10,
+      borderRadius: 20,
+    },
+    botonStyle:{
+        marginTop: 20,
+        marginLeft: 70,
+        marginRight: 70,
+        backgroundColor: '#42a245',
+        borderRadius: 50,
+    },
+    boton2Style:{
+        marginTop: 20,
+        marginLeft: 100,
+        marginRight: 100,
+        marginBottom: 10,
+        backgroundColor: '#c70039',
+        borderRadius: 50,
+
+    },
+    actionStyle: { 
+        flexDirection: "column",
+        justifyContent: "space-around",
+        marginTop: 0,
+        marginBottom: 0,
+        marginLeft: 30,
+        marginRight: 30,
+        borderRadius: 50,
     }
 
 })

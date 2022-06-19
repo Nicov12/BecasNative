@@ -1,4 +1,4 @@
-import { StyleSheet, View} from 'react-native';
+import { StyleSheet, View, Text} from 'react-native';
 import 'react-native-gesture-handler';
 import Home from './Screens/Home';
 import Contants from 'expo-constants';
@@ -14,57 +14,42 @@ import BecasPop from './Screens/BecasPop';
 
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
+function Root() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Login" component={Login} 
+      options = {{headerShown: false, drawerItemStyle: { display: 'none' }}}/>
+      <Drawer.Screen name="Inicio" component={BecasPop} />
+      <Drawer.Screen name="Becas" component={Home} />
+      <Stack.Screen name="Nacional" component={Nacional} />
+      <Stack.Screen name="Internacional" component={Internacional} />
+      <Stack.Screen name="Register" component={Register} 
+      options = {{headerShown: false, drawerItemStyle: { display: 'none' }}}/>
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
-
   return (
     <NavigationContainer>
-      <Drawer.Navigator 
-      initialRouteName="Login"
-      drawerPosition="right"
-      screenOptions={{
-        drawerStyle: {
-          backgroundColor: '#68b7e7',
-          width: 240,
-          borderColor: '#161836',
-        },
-       
-      }}>
-        <Drawer.Screen name="Login" component={Login} 
-        options = {{headerShown: false, drawerItemStyle: { display: 'none' }}}/> 
-        <Drawer.Screen name="Register" component={Register} 
-        options = {{headerShown: false, drawerItemStyle: { display: 'none' }}}/>
-        <Drawer.Screen name="Crear Beca" component={CrearBeca} 
-        options = {{ drawerItemStyle: { display: 'none' }}}/> 
-        <Drawer.Screen name="Detalle" component={BecaDetalle} 
-        options = {{drawerItemStyle: { display: 'none' }, 
-        title: 'Detalle de la beca'}}/> 
-        <Drawer.Screen name="Editar" component={EditarBeca} 
-        options = {{drawerItemStyle: { display: 'none' }, title: 'Editar beca'}}/>
-        <Drawer.Screen name="Populares" component={BecasPop} 
-        options = {{drawerActiveBackgroundColor: '#7f98a7',
-        drawerActiveTintColor: 'white',
-        drawerInactiveTintColor: 'white' }}/>
-        <Drawer.Screen name="Becas" component={Home} 
-        options = {{drawerActiveBackgroundColor: '#7f98a7',
-        drawerActiveTintColor: 'white',
-        drawerInactiveTintColor: 'white'  }}/>
-        <Drawer.Screen name="Nacionales" component={Nacional} 
-        options = {{drawerActiveBackgroundColor: '#7f98a7',
-        drawerActiveTintColor: 'white',
-        drawerInactiveTintColor: 'white'  }}/>
-        <Drawer.Screen name="Internacional" component={Internacional}
-        options = {{drawerActiveBackgroundColor: '#7f98a7',
-        drawerActiveTintColor: 'white',
-        drawerInactiveTintColor: 'white'  }} />
-        <Drawer.Screen name="Cerrar Sesión" component={Login} 
-        options = {{headerShown: false}}/>
-       
-      </Drawer.Navigator>
+        <Stack.Navigator>
+        <Stack.Screen
+          name="Root"
+          component={Root}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="Detalle" component={BecaDetalle} />
+        <Stack.Screen name="Editar" component={EditarBeca} />
+        <Stack.Screen name="Crear Beca" component={CrearBeca} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
+

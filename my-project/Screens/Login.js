@@ -29,10 +29,10 @@ function Login(props) {
 
          if(aux1 === username && aux2 === password){
             console.log("hola")
-            props.navigation.navigate('Populares');
+            props.navigation.navigate('Inicio');
             }else{
                 console.log("no")
-                Alert.alert("Usuario o contraseña incorrectos");
+                Alert.alert("No pai, ta equivocao mano, usuario o contraseña incorrectos");
             }
        }
 
@@ -49,7 +49,7 @@ function Login(props) {
         .then(resp => resp.json())
         .then(data => {
           setData(data)
-          //console.log(data)
+          console.log(data)
         })
         .catch(error => Alert.alert("error", error))
     },[]);

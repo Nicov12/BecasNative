@@ -30,7 +30,8 @@ function EditarBeca(props) {
 
   return (
     <ScrollView style={styles.root}>
-    <View>
+        <Text style={styles.texto}> EDITAR BECA </Text>
+    <View style={styles.cardStyle}>
         <TextInput style = {styles.inputStyle}
         label = "Nombre"
         value = {nombre}
@@ -65,7 +66,7 @@ function EditarBeca(props) {
         mode = "outlined"
         activeOutlineColor='#161836'
         onChangeText={text => setRequerimiento(text)}/>
-
+        </View>
         <Button  
         style = {styles.botonStyle}
         icon = "update"
@@ -75,45 +76,57 @@ function EditarBeca(props) {
         >
             Editar Beca
         </Button>
-
-        <Button  
-        style = {styles.botonStyle}
-        icon = "update"
-        mode = "contained"
-        color = 'red'
-        onPress = {() => props.navigation.navigate('Detalle', {data: data})}
-        
-        >
-            Volver
-        </Button>
-    </View>
+    
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-
+    texto: {
+        padding: 10,
+        fontSize: 30,
+        textAlign: 'center',
+        backgroundColor: '#9dd3ff',
+        color: 'black',
+        marginTop: 10,
+        marginBottom: 10,
+        fontFamily: 'sans-serif-condensed',
+        borderRadius: 50,
+        marginRight: 40,
+        marginLeft: 40,
+    },
     menu: {
         position: 'relative',
         backgroundColor: '#161836',
         marginTop: 143,
     },
     inputStyle: {
-        padding:10,
-        marginLeft:50,
-        marginRight:50,
+        padding:5,
+        marginLeft:30,
+        marginRight:30,
         marginTop:10,
-        marginBottom: 10,   
+        marginBottom: 20,   
     },
     botonStyle:{
         marginTop: 20,
-        marginLeft: 50,
-        marginRight: 50,
-    backgroundColor: '#42a245',
+        marginLeft: 100,
+        marginRight: 100,
+        backgroundColor: '#42a245',
+        borderRadius: 50,
 },
 root: {
-    backgroundColor: '#FFA500',
-}
+    backgroundColor: '#1B2430',
+},
+cardStyle:{
+    padding: 1,
+    marginRight: 20,
+    marginLeft: 20,
+    marginTop: 10,
+    backgroundColor: '#9dd3ff',
+    color: '#fff',
+    fontFamily: 'sans-serif-condensed',
+    borderRadius: 50,
+},
 })
 
 export default EditarBeca

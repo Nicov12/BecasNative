@@ -13,7 +13,7 @@ function BecaInternacional(props) {
   const[loading, setLoading] = useState(true);
 
   const loadData = () => {
-    fetch('http://192.168.1.3:80/api/becas/?pais__istartswith=INTERNACIONAL', {
+    fetch('http://192.168.20.21:80/api/becas/?pais__istartswith=INTERNACIONAL', {
       method: 'GET'
     })
 
@@ -55,8 +55,8 @@ function BecaInternacional(props) {
   }
 
   return (
-    <View style={styles.container2}>
-      <View>
+    <View style={styles.root}>
+      <Text style={styles.texto}> INTERNACIONALES </Text>
     <FlatList
     data = {data}
     renderItem = {({item}) => {
@@ -66,24 +66,42 @@ function BecaInternacional(props) {
     refreshing = {loading}
     keyExtractor = {item => `${item.id}`}
     />
-    </View>
+
   </View> 
 )
 }
 
 const styles = StyleSheet.create({
+  texto: {
+    padding: 10,
+    fontSize: 30,
+    textAlign: 'center',
+    backgroundColor: '#9dd3ff',
+    color: 'black',
+    marginTop: 10,
+    marginBottom: 10,
+    fontFamily: 'sans-serif-condensed',
+    borderRadius: 50,
+    marginRight: 40,
+    marginLeft: 40,
+},
   cardStyle: {
     padding: 10,
     marginRight: 40,
     marginLeft: 40,
     marginTop: 10,
     marginBottom: 10,
-    backgroundColor: '#FFA500',
+    backgroundColor: '#9dd3ff',
     color: '#fff',
     fontFamily: 'sans-serif-condensed',
-
+    alignContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
   },
-
+  root: {
+    backgroundColor: '#1B2430',
+    marginBottom: 80,
+  },
   container2: {
     backgroundColor: "#1B2430"
   },
@@ -95,27 +113,29 @@ const styles = StyleSheet.create({
     color: '#fff', 
     fontFamily: 'sans-serif-condensed',
     textAlign: 'center',
+    borderRadius: 10,
   },
   titleStyle: {
-      fontSize: 25,
-      fontWeight: 'bold',
-      textAlign: 'center',
-      backgroundColor: "#1B2430", 
-      color: '#fff',
-      padding: 10,
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: "#1B2430", 
+    color: '#fff',
+    padding: 10,
+    borderRadius: 20,
   },
   text1:{
-      fontSize: 20, 
-      color: 'black', 
-      fontWeight: 'bold',
-      marginTop: 20,
-      padding: 10,
-      backgroundColor: "#1B2430", 
-      color: '#fff',
-      marginLeft: 5,
-      marginRight: 5,
-      
-  },
+    fontSize: 20, 
+    color: 'black', 
+    fontWeight: 'bold',
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: "#1B2430", 
+    color: '#fff',
+    marginLeft: 5,
+    marginRight: 5,
+    borderRadius: 20,
+  }
 });
 
 export default BecaInternacional;

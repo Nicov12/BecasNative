@@ -16,6 +16,18 @@ function Register(props) {
 
     const Registrar = () => {
         console.log(username, password);
+        fetch("http://192.168.20.21:80/api/users/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({username: username, password: password})
+        })
+        .then(response => response.json())
+        .then(data => {
+            props.navigation.navigate('Login', {data: data});
+        })
+        .catch(error => Alert.alert("Error: ", error));
     }
 
     const IrABecas = () => {
